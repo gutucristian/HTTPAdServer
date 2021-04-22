@@ -74,7 +74,7 @@ print('Response data: {}'.format(response.text))
 
 # Solution Architecture
         
-![](https://s3.amazonaws.com/gutucristian.com/CodingProject.png)
+![](https://sm-project.s3.amazonaws.com/SolutionArchitecture.png)
 
 # Setting Up AWS Architecture
 
@@ -372,19 +372,13 @@ Now we can visit our API over HTTPS using: `https://api.gutucristian.com/ad_requ
 
 ## Securing API using Cognito
 
-First create a Cognito User Pool:
+1. First create a Cognito User Pool
 
-![]()
+2. Next create an app client
 
-Next create an app client:
+3. Create a Cognito User (this represents one instance of a HTTP ad server end user)
 
-![]()
-
-Create a Cognito User (this represents one instance of a HTTP ad server end user):
-
-![]()
-
-The user will need to reset their default password. You can do this via `aws cli` using:
+4. The user will need to reset their default password. You can do this via `aws cli` using:
 
 ```
 aws cognito-idp admin-set-user-password
@@ -394,9 +388,19 @@ aws cognito-idp admin-set-user-password
   --permanent
 ```
 
-A user will need to have the following information to submit an auth request to Cognito (our authentication service) and get a JWT token:
+A user will need to have the following information to submit an auth request to Cognito (our authentication service) and get a JWT token (see `Usage` section):
 
 * Username
 * Password
 * UserPoolId
 * ClientId
+
+# Improvements
+
+* CI/CD workflow
+    * GitHub webhook on merge or push to master
+    * Run tests
+    * Automatically build new Docker image and push to ECR
+    * Create updated ECS task and update service (rolling restart or blue green deploy)
+* Infrastructure as code: build CloudFormation template to automate infrastructure creation process
+* Implement unit tests
