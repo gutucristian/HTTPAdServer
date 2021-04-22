@@ -1,21 +1,21 @@
-import boto3
 import requests
 import json
 
-provider_client = boto3.client('cognito-idp', region_name='us-east-1')
+user_data = {
+  'AuthParameters' : {
+    'USERNAME' : 'foo', 
+    'PASSWORD' : 'fooBarBaz1!'
+  }, 
+  'AuthFlow' : 'USER_PASSWORD_AUTH', 
+  'ClientId' : '6p0to3eafoghamofcdv7mntf3g'
+}
 
-# API user credentials
-auth_data = { 'USERNAME':'foo', 'PASSWORD':'fooBarBaz1!' }
+headers = {'Content-Type': 'application/x-amz-json-1.1', 'X-Amz-Target': 'AWSCognitoIdentityProviderService.InitiateAuth' }
+resp = requests.post('https://cognito-idp.us-east-1.amazonaws.com', data=json.dumps(user_data), headers=headers)
 
-# Provide user credentials and client id to get JWT token
-response = provider_client.admin_initiate_auth(
-  UserPoolId = 'us-east-1_kquJaRpJU', 
-  AuthFlow = 'ADMIN_NO_SRP_AUTH', 
-  AuthParameters = auth_data,
-  ClientId = '6p0to3eafoghamofcdv7mntf3g'
-)
+token = json.loads(resp.content)['AuthenticationResult']['AccessToken']
 
-token = response['AuthenticationResult']['IdToken']
+print(token)
 
 response = requests.get('https://api.gutucristian.com/ad_request?country=us&lang=eng', headers={'Authorization': token})
 
