@@ -40,6 +40,10 @@ Example:
 
 This ad is available in the `US`, for `English` speakers, between `1:00:00AM` and `1:59:59PM` (inclusive).
 
+# Presentation
+
+[Link](https://docs.google.com/presentation/d/1MiJB5L6GREHVRUmlwdw0aFR1VU6ayJ6rgooTki8Ry7Q/edit?usp=sharing) to the Google Slides presentation
+
 # Usage
 
 Run sample client using `python3 client.py`
