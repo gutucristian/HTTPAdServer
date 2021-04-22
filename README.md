@@ -91,7 +91,7 @@ We will use the following AWS Services:
 * ElastiCache (for Redis cluster)
 * S3
 * Cognito
-* DynamoDB
+* AWS Parameter Store
 * CloudWatch
 * IAM
     
