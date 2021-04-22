@@ -46,7 +46,22 @@ This ad is available in the `US`, for `English` speakers, between `1:00:00AM` an
 
 # Usage
 
-Run sample client using `python3 client.py`
+## Using Postman
+
+Make an `HTTP GET` to `https://api.gutucristian.com/ad_request?country=us&lang=eng` and set an `Authorization` header with the user JWT token
+
+![](https://sm-project.s3.amazonaws.com/CallingAPI.png)
+
+Token: 
+```
+eyJraWQiOiI3NzFoSWNpeG5OQU1KMVJZY3FiQWVWVWt1UTkzTW5taDAwYVhhdkJjNWZNPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiI1ZjM1ODJmYS0zMDljLTQyNzgtYWUwZC05MjA5NjA5YjRkMzEiLCJhdWQiOiI2cDB0bzNlYWZvZ2hhbW9mY2R2N21udGYzZyIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJldmVudF9pZCI6IjFjNjAyMTc5LTBiOTYtNDA1MC05ZGYwLWI1NDM0MTBhMjVmYiIsInRva2VuX3VzZSI6ImlkIiwiYXV0aF90aW1lIjoxNjE5MTA0MDM2LCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAudXMtZWFzdC0xLmFtYXpvbmF3cy5jb21cL3VzLWVhc3QtMV9rcXVKYVJwSlUiLCJjb2duaXRvOnVzZXJuYW1lIjoiZm9vIiwiZXhwIjoxNjE5MTA3NjM2LCJpYXQiOjE2MTkxMDQwMzYsImVtYWlsIjoiZ3V0dWNyaXN0aWFuMjdAZ21haWwuY29tIn0.uxMvsm352Z1tQrNebCIf0kOGYoKM6AXJxiY9zE_4LayrKoKvGPPWfZfqbt7NZCErTMoxzQQAmEEyLOp-5fW3yaETk5Qk0dhAy9U6q_ DdBi7zVAa3YOllBwziaU2t4wG30ef6QxjxH61tkMmjJJDc82rtqzJ3wnSLGEmfyGye7pd1nBFST9gke93MjQkDtlTyW5i7As9jAjNj_TgB2zpUybrchG8zyKDcBEr7EjhrZE_rrRU_YYjJGfupyzHY27oaN73AUpJ7PPr9j6WWOowhHSp6O9EGL-QKVwLIblPfcUDqSDUJHdZiFFur_OAdDvzZu58FELfYMlwsebzMj1wJA
+```
+
+**Note:** JWT token will expire after one day
+
+## Using the Sample Client
+
+Run `python3 client.py`
 
 This will authenticate a test user `foo` to our API and receive a JWT token from Cognito. 
 
