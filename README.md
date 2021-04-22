@@ -46,7 +46,37 @@ This ad is available in the `US`, for `English` speakers, between `1:00:00AM` an
 
 # Usage
 
-To get JWT token:
+## Using Sample API Client
+
+Run `python3 client.py`
+
+This makes a call to Cognito, authenticates the user, receives a JWT token and uses it to hit the HTTP ad server at `https://api.gutucristian.com/ad_request?country=us&lang=eng`
+
+```
+import requests
+import json
+
+user_data = {
+  'AuthParameters' : {
+    'USERNAME' : 'foo', 
+    'PASSWORD' : 'fooBarBaz1!'
+  }, 
+  'AuthFlow' : 'USER_PASSWORD_AUTH', 
+  'ClientId' : '6p0to3eafoghamofcdv7mntf3g'
+}
+
+headers = {'Content-Type': 'application/x-amz-json-1.1', 'X-Amz-Target': 'AWSCognitoIdentityProviderService.InitiateAuth' }
+resp = requests.post('https://cognito-idp.us-east-1.amazonaws.com', data=json.dumps(user_data), headers=headers)
+
+token = json.loads(resp.content)['AuthenticationResult']['AccessToken']
+
+response = requests.get('https://api.gutucristian.com/ad_request?country=us&lang=eng', headers={'Authorization': token})
+
+print('Response status code: {}'.format(response.status_code)) # prints 200
+print('Response data: {}'.format(response.text)) # prints {"id":"a0ae3f4279ea4e099b0d668220aba373","videoUrl":"https://www.youtube.com/watch?v=dQw4w9WgXcQ"}
+```
+
+## Using `curl` and Postman 
 
 ```
 curl -X POST --data @userData.json \
