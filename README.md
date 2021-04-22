@@ -72,8 +72,8 @@ token = response['AuthenticationResult']['IdToken']
 
 response = requests.get('https://api.gutucristian.com/ad_request?country=us&lang=eng', headers={'Authorization': token})
 
-print('Response status code: {}'.format(response.status_code))
-print('Response data: {}'.format(response.text))
+print('Response status code: {}'.format(response.status_code)) # prints 200
+print('Response data: {}'.format(response.text)) # prints {"id":"5905a9586a634dc48d19e293c3da067f","videoUrl":"https://www.youtube.com/watch?v=dQw4w9WgXcQ"}
 ```
 
 # Solution Architecture
