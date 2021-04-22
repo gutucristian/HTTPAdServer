@@ -69,7 +69,7 @@ Response:
 
 Use the JWT token in the `Authorization` header to make a `HTTP GET` request to `https://api.gutucristian.com/ad_request?country=us&lang=eng`.
 
-Using Postman:
+### Making Call Using Postman:
 
 ![](https://sm-project.s3.amazonaws.com/CallingAPI.png)
 
