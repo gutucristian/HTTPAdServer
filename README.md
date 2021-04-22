@@ -50,7 +50,7 @@ This ad is available in the `US`, for `English` speakers, between `1:00:00AM` an
 
 Run `python3 client.py`
 
-This makes a call to Cognito, authenticates the user, receives a JWT token and uses it to hit the HTTP ad server at `https://api.gutucristian.com/ad_request?country=us&lang=eng`
+This makes a call to Cognito, authenticates the user, receives a JWT token and uses it to hit the HTTP ad server at `https://api.gutucristian.com/ad_request?country=us&lang=eng` (the JWT token is placed in the `Authorization` header)
 
 ```
 import requests
