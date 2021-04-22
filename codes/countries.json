@@ -1,0 +1,267 @@
+[
+  {
+    "alpha2": "US",
+    "alpha3": "USA",
+    "countryCallingCodes": [
+      "+1"
+    ],
+    "currencies": [
+      "USD"
+    ],
+    "ioc": "USA",
+    "languages": [
+      "eng"
+    ],
+    "name": "United States",
+    "status": "assigned"
+  },
+  {
+    "alpha2": "CA",
+    "alpha3": "CAN",
+    "countryCallingCodes": [
+      "+1"
+    ],
+    "currencies": [
+      "CAD"
+    ],
+    "ioc": "CAN",
+    "languages": [
+      "eng",
+      "fre"
+    ],
+    "name": "Canada",
+    "status": "assigned"
+  },
+  {
+    "alpha2": "MX",
+    "alpha3": "MEX",
+    "countryCallingCodes": [
+      "+52"
+    ],
+    "currencies": [
+      "MXN",
+      "MXV"
+    ],
+    "ioc": "MEX",
+    "languages": [
+      "spa"
+    ],
+    "name": "Mexico",
+    "status": "assigned"
+  },
+  {
+    "alpha2": "UK",
+    "alpha3": "",
+    "countryCallingCodes": [],
+    "currencies": [
+      "GBP"
+    ],
+    "ioc": "",
+    "languages": [
+      "eng",
+      "cor",
+      "gle",
+      "gla",
+      "wel"
+    ],
+    "name": "United Kingdom",
+    "status": "reserved"
+  },
+  {
+    "alpha2": "AT",
+    "alpha3": "AUT",
+    "countryCallingCodes": [
+      "+43"
+    ],
+    "currencies": [
+      "EUR"
+    ],
+    "ioc": "AUT",
+    "languages": [
+      "ger"
+    ],
+    "name": "Austria",
+    "status": "assigned"
+  },
+  {
+    "alpha2": "BE",
+    "alpha3": "BEL",
+    "countryCallingCodes": [
+      "+32"
+    ],
+    "currencies": [
+      "EUR"
+    ],
+    "ioc": "BEL",
+    "languages": [
+      "dut",
+      "fre",
+      "ger"
+    ],
+    "name": "Belgium",
+    "status": "assigned"
+  },
+  {
+    "alpha2": "BG",
+    "alpha3": "BGR",
+    "countryCallingCodes": [
+      "+359"
+    ],
+    "currencies": [
+      "BGN"
+    ],
+    "ioc": "BUL",
+    "languages": [
+      "bul"
+    ],
+    "name": "Bulgaria",
+    "status": "assigned"
+  },
+  {
+    "alpha2": "CY",
+    "alpha3": "CYP",
+    "countryCallingCodes": [
+      "+357"
+    ],
+    "currencies": [
+      "EUR"
+    ],
+    "ioc": "CYP",
+    "languages": [
+      "gre",
+      "tur"
+    ],
+    "name": "Cyprus",
+    "status": "assigned"
+  },
+  {
+    "alpha2": "CZ",
+    "alpha3": "CZE",
+    "countryCallingCodes": [
+      "+420"
+    ],
+    "currencies": [
+      "CZK"
+    ],
+    "ioc": "CZE",
+    "languages": [
+      "cze"
+    ],
+    "name": "Czech Republic",
+    "status": "assigned"
+  },
+  {
+    "alpha2": "DK",
+    "alpha3": "DNK",
+    "countryCallingCodes": [
+      "+45"
+    ],
+    "currencies": [
+      "DKK"
+    ],
+    "ioc": "DEN",
+    "languages": [
+      "dan"
+    ],
+    "name": "Denmark",
+    "status": "assigned"
+  },
+  {
+    "alpha2": "EE",
+    "alpha3": "EST",
+    "countryCallingCodes": [
+      "+372"
+    ],
+    "currencies": [
+      "EUR"
+    ],
+    "ioc": "EST",
+    "languages": [
+      "est"
+    ],
+    "name": "Estonia",
+    "status": "assigned"
+  },
+  {
+    "alpha2": "FI",
+    "alpha3": "FIN",
+    "countryCallingCodes": [
+      "+358"
+    ],
+    "currencies": [
+      "EUR"
+    ],
+    "ioc": "FIN",
+    "languages": [
+      "fin",
+      "swe"
+    ],
+    "name": "Finland",
+    "status": "assigned"
+  },
+  {
+    "alpha2": "FR",
+    "alpha3": "FRA",
+    "countryCallingCodes": [
+      "+33"
+    ],
+    "currencies": [
+      "EUR"
+    ],
+    "ioc": "FRA",
+    "languages": [
+      "fre"
+    ],
+    "name": "France",
+    "status": "assigned"
+  },
+  {
+    "alpha2": "EE",
+    "alpha3": "EST",
+    "countryCallingCodes": [
+      "+372"
+    ],
+    "currencies": [
+      "EUR"
+    ],
+    "ioc": "EST",
+    "languages": [
+      "est"
+    ],
+    "name": "Estonia",
+    "status": "assigned"
+  },
+  {
+    "alpha2": "FI",
+    "alpha3": "FIN",
+    "countryCallingCodes": [
+      "+358"
+    ],
+    "currencies": [
+      "EUR"
+    ],
+    "ioc": "FIN",
+    "languages": [
+      "fin",
+      "swe"
+    ],
+    "name": "Finland",
+    "status": "assigned"
+  },
+  {
+    "alpha2": "FR",
+    "alpha3": "FRA",
+    "countryCallingCodes": [
+      "+33"
+    ],
+    "currencies": [
+      "EUR"
+    ],
+    "ioc": "FRA",
+    "languages": [
+      "fre"
+    ],
+    "name": "France",
+    "status": "assigned"
+  }
+]

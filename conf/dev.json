@@ -1,0 +1,11 @@
+{
+  "adServerHost": "0.0.0.0",
+  "adServerPort": 80,
+  "redisHostParameterStoreName": "devRedisHost",
+  "redisPortParameterStoreName": "devRedisPort",
+  "debug": false,
+  "isThreaded": false,
+  "smAdsS3BucketName": "sm-ads",
+  "smAdsS3ObjectKeyFormat": ["country", "lang"],
+  "smAdsS3ObjectKeyDelimiter": "/"
+}
