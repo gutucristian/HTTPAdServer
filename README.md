@@ -46,50 +46,34 @@ This ad is available in the `US`, for `English` speakers, between `1:00:00AM` an
 
 # Usage
 
-## Using Postman
+To get JWT token:
 
-Make an `HTTP GET` to `https://api.gutucristian.com/ad_request?country=us&lang=eng` and set an `Authorization` header with the user JWT token
+```
+curl -X POST --data @userData.json \
+-H 'X-Amz-Target: AWSCognitoIdentityProviderService.InitiateAuth' \
+-H 'Content-Type: application/x-amz-json-1.1' \
+https://cognito-idp.us-east-1.amazonaws.com/
+```
+
+File `userData.json`:
+
+```
+{"AuthParameters" : {"USERNAME" : "foo", "PASSWORD" : "fooBarBaz1!"}, "AuthFlow" : "USER_PASSWORD_AUTH", "ClientId" : "6p0to3eafoghamofcdv7mntf3g"}
+```
+
+Response:
+
+```
+{"AuthenticationResult":{"AccessToken":"eyJraWQiOiJhSFdMcGtpUFlKc1NhTWM5VDNuelZRWkh1ZmlRMENQdDdNclhVUUJDMnBjPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiI1ZjM1ODJmYS0zMDljLTQyNzgtYWUwZC05MjA5NjA5YjRkMzEiLCJldmVudF9pZCI6ImM3YzMwMzI1LWY4YzUtNDcxNi1hYWEwLTcwOGRlNGU1NTgwYiIsInRva2VuX3VzZSI6ImFjY2VzcyIsInNjb3BlIjoiYXdzLmNvZ25pdG8uc2lnbmluLnVzZXIuYWRtaW4iLCJhdXRoX3RpbWUiOjE2MTkxMDY5MjQsImlzcyI6Imh0dHBzOlwvXC9jb2duaXRvLWlkcC51cy1lYXN0LTEuYW1hem9uYXdzLmNvbVwvdXMtZWFzdC0xX2txdUphUnBKVSIsImV4cCI6MTYxOTE5MzMyNCwiaWF0IjoxNjE5MTA2OTI0LCJqdGkiOiI5ZGFmYjZkMC0zNTZkLTQ3ZGEtODVlOS1iZTE5MGE3ZGVlOTgiLCJjbGllbnRfaWQiOiI2cDB0bzNlYWZvZ2hhbW9mY2R2N21udGYzZyIsInVzZXJuYW1lIjoiZm9vIn0.TzAvvAqwvkc4jsTblnBQ0HeFr-DutytmQKyIhamfnlSA40guaBOq38DAq8wn7-hatIW1CgT-GM19b0BdQZywWMJtooOzTZm9lLHcJhUd3FjO9B_J65t4UpN_i0SNXJAd5I4pYZDFj-1n0J6fA9ezknhFrtE2Aa1meOSJjMCvstT6P2t7CLK5qpZtC1T905NcN4VClGW6XCsYhZ7wKw8vx1Kq-qf8Mgg7J_1MxhqihT8lGCvJSoF5B4Zz5fAvBfsPvGVmwd6mVeYRHdW8v5LUlu3DZ-lx-YVkS-98EW3o_JaUAZrJulx10TUJk-Q8AHMlEJhbecg9B6j4t_D1B9POag","ExpiresIn":86400,"IdToken":"eyJraWQiOiI3NzFoSWNpeG5OQU1KMVJZY3FiQWVWVWt1UTkzTW5taDAwYVhhdkJjNWZNPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiI1ZjM1ODJmYS0zMDljLTQyNzgtYWUwZC05MjA5NjA5YjRkMzEiLCJhdWQiOiI2cDB0bzNlYWZvZ2hhbW9mY2R2N21udGYzZyIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJldmVudF9pZCI6ImM3YzMwMzI1LWY4YzUtNDcxNi1hYWEwLTcwOGRlNGU1NTgwYiIsInRva2VuX3VzZSI6ImlkIiwiYXV0aF90aW1lIjoxNjE5MTA2OTI0LCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAudXMtZWFzdC0xLmFtYXpvbmF3cy5jb21cL3VzLWVhc3QtMV9rcXVKYVJwSlUiLCJjb2duaXRvOnVzZXJuYW1lIjoiZm9vIiwiZXhwIjoxNjE5MTEwNTI0LCJpYXQiOjE2MTkxMDY5MjQsImVtYWlsIjoiZ3V0dWNyaXN0aWFuMjdAZ21haWwuY29tIn0.CcmQhWApg-k9_SCoS8tJg0eqdTNMN0dyFqzprJWqZYmpyLIYVJIW0Jwas9Z8yOxLcqoW2Mi-ZDHvzNl5xVUZyE37pEHlzWHb3em0lvwbSSAjL4Y57Q_Ddx1PbHwj0gRBSDMVYd-bCYibfBwa8ftnlSr70qtzo7BRnKz6Whu0_IrISaQC-nbP6eS8jntf0yCEwuZr6FFpRvgM_pKTdXis5vVAfSDh1mJv6kMcazJnI8VRjvYUKryGzxBCsnzftkUYdXVMAGKMWW-yrBTmpM35XhIzS7FW8UrC-n7GN-_sL1t5l3pLozT3RMd0FeFGmnDfrePY6U-2nOtJtCdV6q7Z5Q","RefreshToken":"eyJjdHkiOiJKV1QiLCJlbmMiOiJBMjU2R0NNIiwiYWxnIjoiUlNBLU9BRVAifQ.XrZBVdscMkcdYVDs2vwJBpQBexs47OFOM0drD36y4OJK4uPcbEjzY0Mrw7hHjc5uW1sR_E0bIMx62hur6B6dmNCeGcrOMK0JPCx2Vkrj1ghZd0p_DZuGB8NwGr0yoDjIXU-pQGkj1h2errJtjSf-rWe6gI_EK5puyZvuFWI432AFmxpd334lBEJEDanqyfeUsnLzanA4dkruWGko1x9inIDrhPGY64MZmY7Kg6VNIrOPMunBMZeVOMQi4cTD6g0GEwIJntVR9GR2ptMByK8TYQuoofmNEEXoOOfMd9AarYoHj0ZR2HNKACu3bvd93d1uKy5aYts6sJFRjjUcaug_Cw.HYAvBHP9T7Lg6qih._93W4z7GOa2Ging6B8YJhYVfObKos5joig0p15gWv0Wc3l3TWI-ZoPYEnhZDKGRCATsZzfsPRKpND5jYWBl4ecfCOEeqonb4ORSXD3dfvD_M0SkFyMrrrOlcPu_O9_IFOH0gAGXIFJnAi3mAvH5L7bGKxzSbV2wem31V3n9Vo8x9gR3ydiE2r8tHMQFol3WfkYTMt74QfJcrrysQjuX7jkGJo4tibAf5Xm4e3ozIzp4fgs1LjXjCLo5WIeL8xPB9x5cqrW6PbVbfCCw2jEJ4lSrm104S4uq3s2QUe59raTlCcwDumQHw1eivW37LXCrdxMYhyeJbfugeKVAy7Is3oa7MAq-nj3XDpEOt5mWpEmBE2BH_BCySsvEMHzODAwMtwkFuAYjGqmQlbd4tRYn83IH5J6sjeBotkjOfC55DhDBeiEzSOGSKjtvVC_V1MBxZ0XxBphlzZESoHvzTock1BUkAVQHK9eC5Y8-CJSqDC6HBg5oU06C5xyjnfSLlE8G62-5WKJrqN9ZqDpZW0V6z-WQJqAMVuwbYuqMcR7qQ-hSQ5oU9oIzpW2vYsd4qFelFVV4OZHdwkBv_5r6tr7rhRFAjbRJnrDsmEbXR_ocTMzeNdgD8yc0ez8Nr55zKW8ffvg08-zq6vuHI9e0Kyv7xioafeF25Msc0gEhaBgIhCWARzHExatRnw5DBDrogXr2SB69qkb5uxOjK0RkQvgW-4APcTGtuE7lxg2WvxpmuWWMTOMVBMvPZD79l0JylSIHsLqiGmk8gkuxVH0Iva9rFHAgUk7F4Mbah3OiK6Gs54lt1mAwDR6XURl5-oQGmGGNwSnqbtVbsvdxbpAnrH0gch_3dsZ2bELceu0DTUL54HHENgCllJsKGG6PUmdnKamboyl9jcdMxCun6HWDrV92cDG3o0qcFlMlkIJYThz3ljp5MeY7DmZ9NmvGyvBMDlnsJEHN5KQ-mnPA1h_sIZu_R2zSXcz4UKXAGYj3yR7shYn28ITKOl4F0U6W1spQxZPXegUNuQ869eIgc0OVWIXU3SK6Ewm15-snHviJlfypMwmhXr-ru94E4fYZ31JxvKTxrIi0aAnOYyluYiFlef1lOreTHuvCDqtKtbHyruMk_x6c88ty3HoDmpmYTIi7sb232lWyOJJGbISANxhGEu0HJd0Tkm2xmelJ6GSsoBzFMBi07wlkFSW9NPTiS0jSxD7HOGe_MP50aNHlXtTitl_ym9p71UqffRcjQhn7FaTvT0a9vRcQgHTUsZqRO6y6GnmlANf8.lV2ntKo_xZoEzEO9e1P_VQ","TokenType":"Bearer"},"ChallengeParameters":{}}
+```
+
+Use the JWT token in the `Authorization` header to make a `HTTP GET` request to `https://api.gutucristian.com/ad_request?country=us&lang=eng`.
+
+Using Postman:
 
 ![](https://sm-project.s3.amazonaws.com/CallingAPI.png)
 
-Token: 
-```
-eyJraWQiOiI3NzFoSWNpeG5OQU1KMVJZY3FiQWVWVWt1UTkzTW5taDAwYVhhdkJjNWZNPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiI1ZjM1ODJmYS0zMDljLTQyNzgtYWUwZC05MjA5NjA5YjRkMzEiLCJhdWQiOiI2cDB0bzNlYWZvZ2hhbW9mY2R2N21udGYzZyIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJldmVudF9pZCI6IjFjNjAyMTc5LTBiOTYtNDA1MC05ZGYwLWI1NDM0MTBhMjVmYiIsInRva2VuX3VzZSI6ImlkIiwiYXV0aF90aW1lIjoxNjE5MTA0MDM2LCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAudXMtZWFzdC0xLmFtYXpvbmF3cy5jb21cL3VzLWVhc3QtMV9rcXVKYVJwSlUiLCJjb2duaXRvOnVzZXJuYW1lIjoiZm9vIiwiZXhwIjoxNjE5MTA3NjM2LCJpYXQiOjE2MTkxMDQwMzYsImVtYWlsIjoiZ3V0dWNyaXN0aWFuMjdAZ21haWwuY29tIn0.uxMvsm352Z1tQrNebCIf0kOGYoKM6AXJxiY9zE_4LayrKoKvGPPWfZfqbt7NZCErTMoxzQQAmEEyLOp-5fW3yaETk5Qk0dhAy9U6q_ DdBi7zVAa3YOllBwziaU2t4wG30ef6QxjxH61tkMmjJJDc82rtqzJ3wnSLGEmfyGye7pd1nBFST9gke93MjQkDtlTyW5i7As9jAjNj_TgB2zpUybrchG8zyKDcBEr7EjhrZE_rrRU_YYjJGfupyzHY27oaN73AUpJ7PPr9j6WWOowhHSp6O9EGL-QKVwLIblPfcUDqSDUJHdZiFFur_OAdDvzZu58FELfYMlwsebzMj1wJA
-```
-
 **Note:** JWT token will expire after one day
-
-## Using the Sample Client
-
-Run `python3 client.py`
-
-This will authenticate a test user `foo` to our API and receive a JWT token from Cognito. 
-
-It will then make an ad request to `https://api.gutucristian.com/ad_request?country=us&lang=eng` with the JWT token in the `Authorization` header.
-
-```
-import boto3
-import requests
-import json
-
-provider_client = boto3.client('cognito-idp', region_name='us-east-1')
-
-auth_data = { 'USERNAME':'foo', 'PASSWORD':'fooBarBaz1!' }
-
-response = provider_client.admin_initiate_auth(
-  UserPoolId = 'us-east-1_kquJaRpJU', 
-  AuthFlow = 'ADMIN_NO_SRP_AUTH', 
-  AuthParameters = auth_data,
-  ClientId = '6p0to3eafoghamofcdv7mntf3g'
-)
-
-token = response['AuthenticationResult']['IdToken']
-
-response = requests.get('https://api.gutucristian.com/ad_request?country=us&lang=eng', headers={'Authorization': token})
-
-print('Response status code: {}'.format(response.status_code)) # prints 200
-print('Response data: {}'.format(response.text)) # prints {"id":"5905a9586a634dc48d19e293c3da067f","videoUrl":"https://www.youtube.com/watch?v=dQw4w9WgXcQ"}
-```
 
 # Solution Architecture
         
