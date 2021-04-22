@@ -33,7 +33,7 @@ def get_ad_campaign_universe(ad_campaign: dict) -> list:
         hours that it is available for
 
     Returns:
-      ad_campaign_hours (str): a list of keys representing the ad campaign hours for this ad with a country/lang/hour prefix
+      ad_campaign_hours (str): a list of keys (each with a country/lang/hour prefix) representing the ad campaign hours for this ad
   """
   ad_campaign_hours = []
 
