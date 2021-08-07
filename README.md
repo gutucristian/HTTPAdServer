@@ -1,13 +1,3 @@
-# Simulmedia Take Home Coding Project
-
-The project and presentation must show knowledge around:
-
-- Coding
-- Testing
-- Architecture and design
-- Scalability
-- Security
-
 ## Project Description
 
 Advertisers would like to run ad campaigns that target video game players based on the country they're in and the language they speak.
