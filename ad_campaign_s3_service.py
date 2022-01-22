@@ -1,24 +1,30 @@
 import json
 import requests
-import os
-import time
 import multiprocessing as mp
 from contextlib import contextmanager
 import boto3
+import logging
+
+logging.basicConfig(
+  filename='adCampaignS3Service.log', 
+  filemode='a', 
+  format='[%(asctime)s] - %(message)s',
+  datefmt='%H:%M:%S',
+  level=logging.INFO
+)
 
 s3 = boto3.client('s3')
-s3_bucket = 'sm-ads'
+s3_bucket = 'game-ads'
 
 def explode_ad_campaign(ad_campaign: dict, start_hour: int, end_hour: int) -> list:
   ad_campaign_hours = []
 
+  country = ad_campaign['country']
+  lang = ad_campaign['lang']  
+  ad_id = ad_campaign['id']
+
   for hour in range(start_hour, end_hour):
-    ad_campaign_hours.append('{}/{}/{}/{}'.format(
-      ad_campaign['country'],
-      ad_campaign['lang'],
-      hour,
-      ad_campaign['id'],
-    ).lower())
+    ad_campaign_hours.append(f'{country}/{lang}/{hour}/{ad_id}'.lower())
 
   return ad_campaign_hours
 
@@ -58,7 +64,11 @@ def process_ad(ad: dict):
   """
     Builds ad campaign universe for 'ad' and sinks it to S3 data lake
   """
+  logging.info(f'Process ad: {ad}')
+
   ad_campaign_universe = get_ad_campaign_universe(ad)
+
+  logging.info(f'Ad campaign universe: {ad_campaign_universe}')
 
   ad_id = ad['id']
   video_url = ad['video_url']
@@ -66,6 +76,7 @@ def process_ad(ad: dict):
   ad = {'id': ad_id, 'videoUrl': video_url}
 
   for key in ad_campaign_universe:
+    logging.info(f'Writing object with key {key} to bucket {s3_bucket}')
     upload_to_s3(s3, s3_bucket, key, ad)
 
 
@@ -85,15 +96,13 @@ if __name__ == '__main__':
   chunksize = 50
   ads = None
 
-  # with open('./ads.json', 'r') as f:
-  #   ads = json.loads(''.join(f.readlines()))
-  #   ads = ads['ads']
+  with open('./ads.json', 'r') as f:
+    ads = json.loads(''.join(f.readlines()))
+    ads = ads['ads']  
 
-  video_ad_service_url = 'https://gist.githubusercontent.com/victorhurdugaci/22a682eb508e65d97bd5b9152f564ab3/raw/dbf27ef217dba9bbd753de26cdabf8a91bdf1550/sm_ads.json'
-
-  ads = requests.get(video_ad_service_url).text 
-  ads = json.loads(ads)
-  ads = ads['ads']
+  # ads = requests.get(video_ad_service_url).text
+  # ads = json.loads(ads)
+  # ads = ads['ads']
 
   with poolcontext(processes=cpu_count) as pool:
-    pool.map(get_ad_campaign_universe, ads, chunksize)
+    pool.map(process_ad, ads, chunksize)

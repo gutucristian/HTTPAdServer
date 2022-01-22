@@ -1,0 +1,12 @@
+{'Cluster': 'arn:aws:ecs:us-east-1: 255286435885:cluster/dev', 'TaskARN': 'arn:aws:ecs:us-east-1: 255286435885:task/dev/817ca3b7f185430f857e22846c51d1af', 'Family': 'http-ad-server-task', 'Revision': '5', 'DesiredStatus': 'RUNNING', 'KnownStatus': 'RUNNING', 'Containers': [
+    {'DockerId': '817ca3b7f185430f857e22846c51d1af-1611838801', 'Name': 'http-ad-server-container', 'DockerName': 'http-ad-server-container', 'Image': '255286435885.dkr.ecr.us-east-1.amazonaws.com/http-ad-server:latest', 'ImageID': 'sha256: 52cca7d008a3b3b690f67849761e7800527a36d3b1f18f0d123dfd111d62dab4', 'Labels': {'com.amazonaws.ecs.cluster': 'arn:aws:ecs:us-east-1: 255286435885:cluster/dev', 'com.amazonaws.ecs.container-name': 'http-ad-server-container', 'com.amazonaws.ecs.task-arn': 'arn:aws:ecs:us-east-1: 255286435885:task/dev/817ca3b7f185430f857e22846c51d1af', 'com.amazonaws.ecs.task-definition-family': 'http-ad-server-task', 'com.amazonaws.ecs.task-definition-version': '5'
+      }, 'DesiredStatus': 'RUNNING', 'KnownStatus': 'RUNNING', 'Limits': {'CPU': 2, 'Memory': 512
+      }, 'CreatedAt': '2022-01-19T22: 45: 11.36472899Z', 'StartedAt': '2022-01-19T22: 45: 11.36472899Z', 'Type': 'NORMAL', 'Networks': [
+        {'NetworkMode': 'awsvpc', 'IPv4Addresses': ['172.31.83.250'
+          ]
+        }
+      ]
+    }
+  ], 'Limits': {'CPU': 0.25, 'Memory': 512
+  }, 'PullStartedAt': '2022-01-19T22: 45: 04.332204881Z', 'PullStoppedAt': '2022-01-19T22: 45: 09.563537116Z', 'AvailabilityZone': 'us-east-1b'
+}

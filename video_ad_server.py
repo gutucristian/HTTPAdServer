@@ -8,6 +8,7 @@ import multiprocessing as mp
 import json
 import utils
 import s3_util
+import requests
 
 # Configure logger
 logging.basicConfig(format='%(asctime)s - %(message)s', level=logging.INFO)
@@ -56,8 +57,8 @@ def get_key(ad_key_components: list, values: dict, delimiter: str, utc_hour: str
 
   for key_component in ad_key_components:
     if key_component not in values:
-      logging.warning('Bad argument: missing required query arg parameter "{}"'.format(key_component))
-      raise ValueError('Missing required query arg parameter "{}"'.format(key_component))
+      logging.warning(f'Bad argument: missing required query arg parameter "{key_component}"')
+      raise ValueError(f'Missing required query arg parameter "{key_component}"')
     key.append(values.get(key_component) + delimiter)    
 
   key.append(utc_hour)
@@ -89,11 +90,20 @@ def get_ad_from_cache(redis_client: object, key: str) -> dict:
     update_cache(redis_client, key, 1, next_batch_of_ads, continuation_token)
     return next_batch_of_ads[0]
   elif next_ad_index == len(ads['ads']) and not continuation_token:
-    return ads['ads'][0]
+    return ads['ads'][0] # TODO: pick random not 0
   elif next_ad_index < len(ads):
     update_cache(redis_client, key, next_ad_index + 1, ads['ads'], continuation_token)
     return ads['ads'][next_ad_index]
-  
+
+
+def get_availability_zone():
+  logging.info('Getting container AZ...')
+  ECS_CONTAINER_METADATA_URI = str(os.environ['ECS_CONTAINER_METADATA_URI'])
+  data = requests.get(f'{ECS_CONTAINER_METADATA_URI}/task')
+  data = json.loads(data.content)
+  logging.info(f'task metadata endpoint response: {data}')
+  return data['AvailabilityZone']
+
 
 @app.route('/ad_request', methods=['GET'])
 def api():
@@ -109,27 +119,38 @@ def api():
 
     logging.info('Received ad request for: {}'.format(key))
 
+    az = get_availability_zone()
+
     if redis_client.exists(key):
-      logging.info('Cache hit for key: {}'.format(key))  
-      return get_ad_from_cache(redis_client, key), 200    
+      logging.info(f'Cache hit for key: {key}')
+
+      ad = get_ad_from_cache(redis_client, key)
+
+      ad['availability_zone'] = az
+
+      return ad, 200
     else:
-      logging.info('Cache miss for key: {}'.format(key))
+      logging.info(f'Cache miss for key: {key}')
       next_batch_of_ad_keys, continuation_token = s3_util.get_next_batch_of_ad_keys(s3, sm_ads_s3_bucket_name, key)
       next_batch_of_ads = s3_util.get_next_batch_of_ads_from_s3(s3, sm_ads_s3_bucket_name, next_batch_of_ad_keys)
 
       if next_batch_of_ads is None:
         key = key.split('/')
         return {
-          'Message': 'No ad available for country = {} and language = {} at {}'.format(key[0], key[1], datetime.now(timezone.utc))
+          'Message': f'No ad available for country "{key[0]}" and language "{key[1]}" at "{datetime.now(timezone.utc)}"'
         }
 
       update_cache(redis_client, key, 1, next_batch_of_ads, continuation_token)
 
-      return next_batch_of_ads[0], 200
+      ad = next_batch_of_ads[0]
+
+      ad['availability_zone'] = az
+
+      return ad, 200
   except Exception as e:
     return { 
       'Message': 'Internal Server Error', 
-      'Reason': '{}'.format(e) 
+      'Reason': f'{e}'
     }, 500
 
 

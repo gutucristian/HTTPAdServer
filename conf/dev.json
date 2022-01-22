@@ -5,7 +5,7 @@
   "redisPortParameterStoreName": "devRedisPort",
   "debug": false,
   "isThreaded": false,
-  "smAdsS3BucketName": "sm-ads",
+  "smAdsS3BucketName": "game-ads",
   "smAdsS3ObjectKeyFormat": ["country", "lang"],
   "smAdsS3ObjectKeyDelimiter": "/"
 }

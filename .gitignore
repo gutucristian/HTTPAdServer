@@ -2,3 +2,5 @@
 .vscode/
 ads.json
 __pycache__/
+token.json
+userData.json
